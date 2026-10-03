@@ -1,0 +1,55 @@
+== arc-swap #210 hammer 2026-10-03T09:28:18Z
+host: MINGW64_NT-10.0-26200 3.4.10-87d57229.x86_64 x86_64
+rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arc-swap: version = "1.9.1"
+features: <none>  iters: 1000  load: /e/scratch/arc-swap-210-repro/load  direct: 1
+warm-up build...
+binary: E:/scratch/arc-swap-210-repro/target/debug/deps/arc_swap_210_repro-8faa663ec112b34d.exe
+load started (pids 969 970)
+iter 25: mystery=0 mundane=0 other=0 (load )
+iter 50: mystery=0 mundane=0 other=0 (load )
+iter 75: mystery=0 mundane=0 other=0 (load )
+iter 100: mystery=0 mundane=0 other=0 (load )
+iter 125: mystery=0 mundane=0 other=0 (load )
+iter 150: mystery=0 mundane=0 other=0 (load )
+iter 175: mystery=0 mundane=0 other=0 (load )
+iter 200: mystery=0 mundane=0 other=0 (load )
+iter 225: mystery=0 mundane=0 other=0 (load )
+iter 250: mystery=0 mundane=0 other=0 (load )
+iter 275: mystery=0 mundane=0 other=0 (load )
+iter 300: mystery=0 mundane=0 other=0 (load )
+iter 325: mystery=0 mundane=0 other=0 (load )
+iter 350: mystery=0 mundane=0 other=0 (load )
+iter 375: mystery=0 mundane=0 other=0 (load )
+iter 400: mystery=0 mundane=0 other=0 (load )
+iter 425: mystery=0 mundane=0 other=0 (load )
+iter 441: MUNDANE (load )
+    thread 'tests::concurrent_lora_no_torn_read' (51952) panicked at src\lib.rs:203:9:
+    MUNDANE reader should have seen at least one consistent snapshot
+iter 450: mystery=0 mundane=1 other=0 (load )
+iter 475: mystery=0 mundane=1 other=0 (load )
+iter 500: mystery=0 mundane=1 other=0 (load )
+iter 525: mystery=0 mundane=1 other=0 (load )
+iter 550: mystery=0 mundane=1 other=0 (load )
+iter 575: mystery=0 mundane=1 other=0 (load )
+iter 576: MUNDANE (load )
+    thread 'tests::concurrent_lora_no_torn_read' (53812) panicked at src\lib.rs:203:9:
+    MUNDANE reader should have seen at least one consistent snapshot
+iter 600: mystery=0 mundane=2 other=0 (load )
+iter 625: mystery=0 mundane=2 other=0 (load )
+iter 650: mystery=0 mundane=2 other=0 (load )
+iter 675: mystery=0 mundane=2 other=0 (load )
+iter 700: mystery=0 mundane=2 other=0 (load )
+iter 725: mystery=0 mundane=2 other=0 (load )
+iter 750: mystery=0 mundane=2 other=0 (load )
+iter 775: mystery=0 mundane=2 other=0 (load )
+iter 800: mystery=0 mundane=2 other=0 (load )
+iter 825: mystery=0 mundane=2 other=0 (load )
+iter 850: mystery=0 mundane=2 other=0 (load )
+iter 875: mystery=0 mundane=2 other=0 (load )
+iter 900: mystery=0 mundane=2 other=0 (load )
+iter 925: mystery=0 mundane=2 other=0 (load )
+iter 950: mystery=0 mundane=2 other=0 (load )
+iter 975: mystery=0 mundane=2 other=0 (load )
+iter 1000: mystery=0 mundane=2 other=0 (load )
+== DONE iters=1000 mystery=0 mundane=2 other=0

@@ -1,6 +1,6 @@
 # Results
 
-Status: T1–T4 complete on the M3; T3 (x86_64) interim 0/450, continuing.
+Status: T1–T4 complete. T3 (x86_64, 4090): 0 MYSTERY in 1000.
 
 All runs: `scripts/hammer.sh`, the two tests in one libtest binary,
 `--test-threads=2`, debug profile, **system allocator**, rustc 1.98.1.
@@ -59,9 +59,11 @@ the native runs.
 
 - Cargo-per-iteration mode costs 40–60 s per iteration there under load. It
   was stopped at 50–74 iterations with 0 fires, which is uninformative.
-- Direct mode (`-d`) under `./load` builds: **interim 0 MYSTERY in 450
-  iterations** (1 MUNDANE starvation, classified separately). At the M3
-  rate (~1/100), P(0 | 450) ≈ 1.1%. The run is continuing to 1000.
+- Direct mode (`-d`) under `./load` builds: **0 MYSTERY in 1000
+  iterations** (2 MUNDANE starvations at iters 441 and 576, classified
+  separately as designed; they show the load was heavy enough to starve
+  readers). At the M3's rate (~1/100), P(0 | 1000) ≈ 4e-5. Logs:
+  `evidence/T3-4090-x86_64-direct-load/`.
 - x86 is TSO (stronger ordering than aarch64). A clean x86 run therefore
   points toward a weak-ordering defect that shows on aarch64. It does not
   separate "arc-swap ordering bug" from "Apple-silicon-specific"; a
