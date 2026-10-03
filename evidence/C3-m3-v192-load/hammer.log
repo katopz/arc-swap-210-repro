@@ -1,0 +1,25 @@
+== arc-swap #210 hammer 2026-10-03T09:23:19Z
+host: Darwin 25.6.0 arm64
+rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arc-swap: version = "1.9.2"
+features: <none>  iters: 300  load: /Users/katopz/git/arc-swap-210-repro.v192/load
+warm-up build...
+load started (pids 66652 66653)
+iter 14: MYSTERY (load 75.07 48.58 30.13)
+    thread '<unnamed>' (141650504) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 1681 -> 996 (inner=0x7f58040b0, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_no_torn_read' (141650499) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 25: mystery=1 mundane=0 other=0 (load 74.82 48.97 30.38)
+iter 50: mystery=1 mundane=0 other=0 (load 74.42 49.75 30.87)
+iter 75: mystery=1 mundane=0 other=0 (load 75.19 50.31 31.18)
+iter 100: mystery=1 mundane=0 other=0 (load 76.01 51.31 31.76)
+iter 125: mystery=1 mundane=0 other=0 (load 79.27 52.81 32.52)
+iter 150: mystery=1 mundane=0 other=0 (load 80.93 54.05 33.19)
+iter 175: mystery=1 mundane=0 other=0 (load 82.17 55.19 33.84)
+iter 200: mystery=1 mundane=0 other=0 (load 80.39 55.27 33.99)
+iter 225: mystery=1 mundane=0 other=0 (load 82.93 56.63 34.72)
+iter 250: mystery=1 mundane=0 other=0 (load 81.81 56.83 34.92)
+iter 275: mystery=1 mundane=0 other=0 (load 78.74 57.01 35.25)
+iter 300: mystery=1 mundane=0 other=0 (load 77.80 57.18 35.43)
+== DONE iters=300 mystery=1 mundane=0 other=0

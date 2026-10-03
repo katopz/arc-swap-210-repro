@@ -1,0 +1,67 @@
+== arc-swap #210 hammer 2026-10-03T09:16:39Z
+host: Darwin 25.6.0 arm64
+rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arc-swap: version = "1.9.1"
+features: <none>  iters: 1000  load: none
+warm-up build...
+iter 25: mystery=0 mundane=0 other=0 (load 30.25 28.79 18.61)
+iter 50: mystery=0 mundane=0 other=0 (load 28.87 28.53 18.58)
+iter 75: mystery=0 mundane=0 other=0 (load 28.16 28.38 18.59)
+iter 100: mystery=0 mundane=0 other=0 (load 26.95 28.13 18.55)
+iter 125: mystery=0 mundane=0 other=0 (load 26.47 28.01 18.57)
+iter 150: mystery=0 mundane=0 other=0 (load 25.39 27.76 18.54)
+iter 175: mystery=0 mundane=0 other=0 (load 24.72 27.58 18.53)
+iter 200: mystery=0 mundane=0 other=0 (load 23.46 27.27 18.47)
+iter 213: MYSTERY (load 22.70 27.05 18.44)
+    thread '<unnamed>' (141357499) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 2183 -> 837 (inner=0x852800060, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (141357496) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 225: mystery=1 mundane=0 other=0 (load 22.70 27.05 18.44)
+iter 226: MYSTERY (load 22.70 27.05 18.44)
+    thread '<unnamed>' (141359019) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 382 -> 249 (inner=0x79a8040b0, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_no_torn_read' (141359014) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 250: mystery=2 mundane=0 other=0 (load 22.00 26.83 18.42)
+iter 275: mystery=2 mundane=0 other=0 (load 22.27 26.73 18.48)
+iter 300: mystery=2 mundane=0 other=0 (load 23.05 26.81 18.56)
+iter 325: mystery=2 mundane=0 other=0 (load 23.23 26.72 18.62)
+iter 350: mystery=2 mundane=0 other=0 (load 22.49 26.51 18.59)
+iter 375: mystery=2 mundane=0 other=0 (load 21.97 26.34 18.58)
+iter 400: mystery=2 mundane=0 other=0 (load 21.33 26.13 18.55)
+iter 425: mystery=2 mundane=0 other=0 (load 20.59 25.90 18.51)
+iter 450: mystery=2 mundane=0 other=0 (load 19.98 25.68 18.48)
+iter 475: mystery=2 mundane=0 other=0 (load 19.74 25.54 18.47)
+iter 500: mystery=2 mundane=0 other=0 (load 20.48 25.59 18.53)
+iter 525: mystery=2 mundane=0 other=0 (load 20.04 25.42 18.51)
+iter 550: mystery=2 mundane=0 other=0 (load 22.15 25.69 18.68)
+iter 575: mystery=2 mundane=0 other=0 (load 22.86 25.77 18.76)
+iter 600: mystery=2 mundane=0 other=0 (load 23.51 25.86 18.83)
+iter 612: MYSTERY (load 22.99 25.71 18.82)
+    thread '<unnamed>' (141381291) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 1110 -> 435 (inner=0xca48000b0, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (141381288) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 625: mystery=3 mundane=0 other=0 (load 22.99 25.71 18.82)
+iter 650: mystery=3 mundane=0 other=0 (load 22.03 25.47 18.77)
+iter 675: mystery=3 mundane=0 other=0 (load 21.39 25.28 18.74)
+iter 700: mystery=3 mundane=0 other=0 (load 20.23 24.97 18.67)
+iter 725: mystery=3 mundane=0 other=0 (load 19.17 24.67 18.60)
+iter 750: mystery=3 mundane=0 other=0 (load 18.60 24.46 18.57)
+iter 775: mystery=3 mundane=0 other=0 (load 18.07 24.26 18.53)
+iter 800: mystery=3 mundane=0 other=0 (load 19.35 24.42 18.62)
+iter 825: mystery=3 mundane=0 other=0 (load 18.36 24.13 18.55)
+iter 850: mystery=3 mundane=0 other=0 (load 17.13 23.78 18.46)
+iter 856: MYSTERY (load 17.13 23.78 18.46)
+    thread '<unnamed>' (141393285) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 174 -> 128 (inner=0xc7cc04010, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (141393282) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 875: mystery=4 mundane=0 other=0 (load 16.40 23.52 18.40)
+iter 900: mystery=4 mundane=0 other=0 (load 16.76 23.47 18.41)
+iter 925: mystery=4 mundane=0 other=0 (load 16.14 23.23 18.36)
+iter 950: mystery=4 mundane=0 other=0 (load 22.06 24.34 18.78)
+iter 975: mystery=4 mundane=0 other=0 (load 22.06 24.34 18.78)
+iter 1000: mystery=4 mundane=0 other=0 (load 21.41 24.17 18.75)
+== DONE iters=1000 mystery=4 mundane=0 other=0

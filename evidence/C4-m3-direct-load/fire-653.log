@@ -1,0 +1,21 @@
+
+running 2 tests
+tests::concurrent_lora_update_read --- FAILED
+.
+failures:
+
+---- tests::concurrent_lora_update_read stdout ----
+
+thread '<unnamed>' (141998960) panicked at src/lib.rs:140:21:
+MYSTERY torn/foreign read at v=1351: a=1351 b=2702 (inner=0xb8d0100b0, tid=ThreadId(7))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::concurrent_lora_update_read' (141998956) panicked at src/lib.rs:151:34:
+reader panicked: Any { .. }
+
+
+failures:
+    tests::concurrent_lora_update_read
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+

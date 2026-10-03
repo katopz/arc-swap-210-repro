@@ -1,0 +1,22 @@
+
+running 2 tests
+. 1/2
+tests::concurrent_lora_no_torn_read --- FAILED
+
+failures:
+
+---- tests::concurrent_lora_no_torn_read stdout ----
+
+thread '<unnamed>' (141931278) panicked at src/lib.rs:180:17:
+MYSTERY version went backwards: 1727 -> 734 (inner=0xc5f00c100, tid=ThreadId(6))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'tests::concurrent_lora_no_torn_read' (141931274) panicked at src/lib.rs:202:40:
+reader panicked: Any { .. }
+
+
+failures:
+    tests::concurrent_lora_no_torn_read
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+

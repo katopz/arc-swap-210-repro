@@ -1,0 +1,113 @@
+== arc-swap #210 hammer 2026-10-03T09:10:45Z
+host: Darwin 25.6.0 arm64
+rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arc-swap: version = "1.9.1"
+features: <none>  iters: 1000  load: /Users/katopz/git/arc-swap-210-repro/load
+warm-up build...
+load started (pids 75761 75762)
+iter 4: MYSTERY (load 8.24 7.30 8.24)
+    thread '<unnamed>' (140934040) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 818 -> 641 (inner=0xaa28081a0, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (140934037) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 14: MYSTERY (load 8.24 7.30 8.24)
+    thread '<unnamed>' (140937591) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 119 -> 105 (inner=0x8a88040b0, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (140937588) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 25: mystery=2 mundane=0 other=0 (load 8.06 7.27 8.23)
+iter 43: MYSTERY (load 8.94 7.47 8.29)
+    thread '<unnamed>' (140946467) panicked at src/lib.rs:190:17:
+    MYSTERY torn/foreign read at v=246: a=246 (expected 246), b=246 (expected 492) (inner=0x84e804010, tid=ThreadId(6))
+    thread 'tests::concurrent_lora_no_torn_read' (140946463) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 50: mystery=3 mundane=0 other=0 (load 8.94 7.47 8.29)
+iter 75: mystery=3 mundane=0 other=0 (load 10.79 7.88 8.43)
+iter 100: mystery=3 mundane=0 other=0 (load 10.72 7.91 8.44)
+iter 125: mystery=3 mundane=0 other=0 (load 11.07 8.03 8.48)
+iter 150: mystery=3 mundane=0 other=0 (load 10.98 8.06 8.48)
+iter 153: MYSTERY (load 10.98 8.06 8.48)
+    thread '<unnamed>' (140961426) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 131 -> 56 (inner=0x840800150, tid=ThreadId(6))
+    thread 'tests::concurrent_lora_no_torn_read' (140961422) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 175: mystery=4 mundane=0 other=0 (load 11.14 8.14 8.51)
+iter 200: mystery=4 mundane=0 other=0 (load 15.81 9.23 8.89)
+iter 225: MYSTERY (load 18.21 9.97 9.16)
+    thread '<unnamed>' (140996244) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 2318 -> 114 (inner=0xbde8080b0, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_no_torn_read' (140996238) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 225: mystery=5 mundane=0 other=0 (load 18.21 9.97 9.16)
+iter 250: mystery=5 mundane=0 other=0 (load 17.80 10.02 9.18)
+iter 275: mystery=5 mundane=0 other=0 (load 17.01 9.99 9.17)
+iter 290: MYSTERY (load 18.93 10.50 9.36)
+    thread '<unnamed>' (141020253) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 322 -> 267 (inner=0xcb4c0c100, tid=ThreadId(6))
+    thread 'tests::concurrent_lora_no_torn_read' (141020249) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 300: mystery=6 mundane=0 other=0 (load 22.22 11.33 9.66)
+iter 325: mystery=6 mundane=0 other=0 (load 29.27 13.22 10.35)
+iter 350: mystery=6 mundane=0 other=0 (load 33.57 14.38 10.77)
+iter 375: mystery=6 mundane=0 other=0 (load 34.97 15.29 11.14)
+iter 384: MYSTERY (load 34.97 15.29 11.14)
+    thread '<unnamed>' (141057434) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 1920 -> 835 (inner=0xb10c08100, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (141057431) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 400: mystery=7 mundane=0 other=0 (load 36.58 15.95 11.40)
+iter 425: mystery=7 mundane=0 other=0 (load 38.61 16.71 11.69)
+iter 450: mystery=7 mundane=0 other=0 (load 37.49 17.19 11.92)
+iter 475: mystery=7 mundane=0 other=0 (load 37.45 17.51 12.06)
+iter 479: MYSTERY (load 37.45 17.51 12.06)
+    thread '<unnamed>' (141097699) panicked at src/lib.rs:140:21:
+    MYSTERY torn/foreign read at v=220: a=220 b=440 (inner=0xb66c0c150, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_update_read' (141097695) panicked at src/lib.rs:151:34:
+    reader panicked: Any { .. }
+iter 500: mystery=8 mundane=0 other=0 (load 42.35 19.20 12.72)
+iter 525: mystery=8 mundane=0 other=0 (load 41.36 19.38 12.83)
+iter 550: mystery=8 mundane=0 other=0 (load 42.17 20.27 13.22)
+iter 575: mystery=8 mundane=0 other=0 (load 40.22 20.57 13.41)
+iter 600: mystery=8 mundane=0 other=0 (load 40.21 21.23 13.72)
+iter 617: MYSTERY (load 40.59 21.62 13.91)
+    thread '<unnamed>' (141163777) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 1011 -> 343 (inner=0x9b2c04150, tid=ThreadId(6))
+    thread 'tests::concurrent_lora_no_torn_read' (141163773) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 625: mystery=9 mundane=0 other=0 (load 41.03 22.03 14.10)
+iter 650: mystery=9 mundane=0 other=0 (load 42.19 22.90 14.50)
+iter 672: MYSTERY (load 43.54 23.50 14.76)
+    thread '<unnamed>' (141187598) panicked at src/lib.rs:190:17:
+    MYSTERY torn/foreign read at v=898: a=898 (expected 898), b=898 (expected 1796) (inner=0xb2c404100, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_no_torn_read' (141187593) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 675: mystery=10 mundane=0 other=0 (load 43.54 23.50 14.76)
+iter 677: MYSTERY (load 43.54 23.50 14.76)
+    thread '<unnamed>' (141190517) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 1502 -> 116 (inner=0x9b2c10010, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (141190514) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 700: mystery=11 mundane=0 other=0 (load 41.99 23.83 14.98)
+iter 725: mystery=11 mundane=0 other=0 (load 40.88 24.19 15.21)
+iter 750: mystery=11 mundane=0 other=0 (load 42.54 25.10 15.64)
+iter 775: mystery=11 mundane=0 other=0 (load 41.61 25.20 15.73)
+iter 800: mystery=11 mundane=0 other=0 (load 43.32 26.10 16.16)
+iter 825: mystery=11 mundane=0 other=0 (load 44.18 26.57 16.38)
+iter 850: mystery=11 mundane=0 other=0 (load 44.53 27.21 16.73)
+iter 875: mystery=11 mundane=0 other=0 (load 45.43 27.99 17.12)
+iter 881: MYSTERY (load 45.43 27.99 17.12)
+    thread '<unnamed>' (141284490) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 865 -> 525 (inner=0x8e8804010, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_no_torn_read' (141284485) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 884: MYSTERY (load 45.43 27.99 17.12)
+    thread '<unnamed>' (141287599) panicked at src/lib.rs:180:17:
+    MYSTERY version went backwards: 1035 -> 766 (inner=0xb00c04010, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (141287593) panicked at src/lib.rs:202:40:
+    reader panicked: Any { .. }
+iter 900: mystery=13 mundane=0 other=0 (load 45.64 28.32 17.31)
+iter 925: mystery=13 mundane=0 other=0 (load 46.50 29.08 17.70)
+iter 950: mystery=13 mundane=0 other=0 (load 46.62 29.39 17.88)
+iter 975: mystery=13 mundane=0 other=0 (load 48.19 30.29 18.33)
+iter 1000: mystery=13 mundane=0 other=0 (load 48.73 30.70 18.55)
+== DONE iters=1000 mystery=13 mundane=0 other=0

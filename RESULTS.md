@@ -74,3 +74,7 @@ git switch v1.9.2-control   && scripts/hammer.sh -n 300    # C3
 git switch genlock-control  && scripts/hammer.sh -n 1000   # C2
 MIRIFLAGS="-Zmiri-many-seeds=0..64" cargo +nightly miri test --lib miri_both   # T4
 ```
+
+## Evidence
+
+Raw hammer logs and per-fire logs for every M3 run, plus the Miri output, are in [`evidence/`](evidence/).

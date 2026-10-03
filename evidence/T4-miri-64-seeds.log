@@ -1,0 +1,277 @@
+Sat Oct  3 16:20:15 +07 2026
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.46s
+     Running unittests src/lib.rs (target/miri/aarch64-apple-darwin/debug/build/arc-swap-210-repro/f5248e6bd2df99a6/out/arc_swap_210_repro-f5248e6bd2df99a6)
+Trying seed: 0
+Trying seed: 63
+Trying seed: 62
+Trying seed: 61
+Trying seed: 60
+Trying seed: 59
+Trying seed: 58
+Trying seed: 57
+Trying seed: 55
+Trying seed: 56
+Trying seed: 54
+Trying seed: 53
+Trying seed: 52
+Trying seed: 51
+Trying seed: 50
+Trying seed: 49
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+   --> /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/debt/helping.rs:324:28
+    |
+324 |             let handover = (control & !TAG_MASK) as *mut Handover;
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ integer-to-pointer cast
+    |
+    = help: this program is using integer-to-pointer casts or (equivalently) `ptr::with_exposed_provenance`, which means that Miri might miss pointer bugs in this program
+    = help: see https://doc.rust-lang.org/nightly/std/ptr/fn.with_exposed_provenance.html for more details on that operation
+    = help: to ensure that Miri does not miss bugs in your program, use Strict Provenance APIs (https://doc.rust-lang.org/nightly/std/ptr/index.html#strict-provenance, https://crates.io/crates/sptr) instead
+    = help: you can then set `MIRIFLAGS=-Zmiri-strict-provenance` to ensure you are not relying on `with_exposed_provenance` semantics
+    = help: alternatively, `MIRIFLAGS=-Zmiri-permissive-provenance` disables this warning
+    = note: this is on thread `unnamed-7`
+    = note: stack backtrace:
+            0: arc_swap::debt::helping::Slots::confirm
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/debt/helping.rs:324:28: 324:66
+            1: arc_swap::debt::list::LocalNode::confirm_helping
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/debt/list.rs:305:9: 306:31
+            2: arc_swap::strategy::hybrid::HybridProtection::<std::sync::Arc<Inner>>::fallback
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/strategy/hybrid.rs:81:15: 81:60
+            3: <arc_swap::strategy::hybrid::HybridStrategy<arc_swap::strategy::hybrid::DefaultConfig> as arc_swap::strategy::sealed::InnerStrategy<std::sync::Arc<Inner>>>::load::{closure#0}::{closure#0}
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/strategy/hybrid.rs:196:36: 196:77
+            4: <arc_swap::strategy::hybrid::HybridStrategy<arc_swap::strategy::hybrid::DefaultConfig> as arc_swap::strategy::sealed::InnerStrategy<std::sync::Arc<Inner>>>::load::{closure#0}
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/strategy/hybrid.rs:196:13: 196:78
+            5: arc_swap::debt::list::LocalNode::with::<arc_swap::strategy::hybrid::HybridProtection<std::sync::Arc<Inner>>, {closure@<arc_swap::strategy::hybrid::HybridStrategy<arc_swap::strategy::hybrid::DefaultConfig> as arc_swap::strategy::sealed::InnerStrategy<std::sync::Arc<Inner>>>::load::{closure#0}}>::{closure#0}
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/debt/list.rs:231:17: 231:24
+            6: std::thread::LocalKey::<arc_swap::debt::list::LocalNode>::try_with::<{closure@arc_swap::debt::list::LocalNode::with<arc_swap::strategy::hybrid::HybridProtection<std::sync::Arc<Inner>>, {closure@<arc_swap::strategy::hybrid::HybridStrategy<arc_swap::strategy::hybrid::DefaultConfig> as arc_swap::strategy::sealed::InnerStrategy<std::sync::Arc<Inner>>>::load::{closure#0}}>::{closure#0}}, arc_swap::strategy::hybrid::HybridProtection<std::sync::Arc<Inner>>>
+                at /Users/katopz/.rustup/toolchains/nightly-aarch64-apple-darwin/lib/rustlib/src/rust/library/std/src/thread/local.rs:463:12: 463:27
+            7: arc_swap::debt::list::LocalNode::with::<arc_swap::strategy::hybrid::HybridProtection<std::sync::Arc<Inner>>, {closure@<arc_swap::strategy::hybrid::HybridStrategy<arc_swap::strategy::hybrid::DefaultConfig> as arc_swap::strategy::sealed::InnerStrategy<std::sync::Arc<Inner>>>::load::{closure#0}}>
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/debt/list.rs:225:9: 232:15
+            8: <arc_swap::strategy::hybrid::HybridStrategy<arc_swap::strategy::hybrid::DefaultConfig> as arc_swap::strategy::sealed::InnerStrategy<std::sync::Arc<Inner>>>::load
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/strategy/hybrid.rs:190:9: 197:11
+            9: arc_swap::ArcSwapAny::<std::sync::Arc<Inner>>::load
+                at /Users/katopz/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/arc-swap-1.9.1/src/lib.rs:473:34: 473:63
+            10: Slot::load
+                at src/lib.rs:43:9: 43:26
+            11: tests::update_read_scenario::{closure#1}
+                at src/lib.rs:130:25: 130:34
+note: the last function in that backtrace got called indirectly due to this code
+   --> src/lib.rs:125:22
+    |
+125 |           let reader = thread::spawn(move || {
+    |  ______________________^
+126 | |             rb.wait();
+127 | |             wait_first_update(&rs);
+128 | |             let mut last = 0u64;
+...   |
+151 | |             last
+152 | |         });
+    | |__________^
+test result: ok
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.57s
+; finished in 30.66sTrying seed: 48
+Trying seed: 47
+test result: okok
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.62sok
+; finished in 30.58s. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+okTrying seed: 46
+Trying seed: 45
+ok; finished in 30.62s
+test result: 
+okok
+oktest result: ok
+test result: okTrying seed: 44
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outtest result: okok
+test result: 
+; finished in 30.62s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+Trying seed: 43
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.56s; finished in 30.59sok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+; finished in 30.60s; finished in 30.62s
+; finished in 30.59s. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 42
+Trying seed: 41
+Trying seed: 40
+; finished in 30.57sTrying seed: 39
+Trying seed: 38
+Trying seed: 1
+oktest result: 
+okok
+test result: 
+ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: ok; finished in 30.58s
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 37
+; finished in 30.57s
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 36
+; finished in 30.60s
+Trying seed: 35
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.61s
+Trying seed: 34
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+test result: ok
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.57s
+; finished in 30.60s
+Trying seed: 33
+Trying seed: 32
+oktest result: 
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok; finished in 30.58s. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+ok; finished in 30.57s
+Trying seed: 31
+test result: okTrying seed: 30
+ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: okok; finished in 30.66s
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 29
+test result: ok; finished in 30.57s
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outokTrying seed: 2
+test result: ok; finished in 30.61s
+ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+; finished in 30.58sTrying seed: 28
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: ok; finished in 30.61s
+Trying seed: 27
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 26
+; finished in 30.57s
+oktest result: 
+okTrying seed: 25
+test result: 
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outokok; finished in 30.54s. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 24
+ok; finished in 30.57s; finished in 30.58s
+Trying seed: 23
+Trying seed: 22
+test result: ok
+running 1 test
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+running 1 test
+Trying seed: 21
+test result: okok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: ; finished in 30.60sok
+Trying seed: 20
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.58s
+running 1 test
+Trying seed: 19
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.58s
+Trying seed: 18
+test result: okok
+test result: 
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outokok
+test result: 
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok; finished in 30.65s
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: Trying seed: 17
+ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.59s
+; finished in 30.62sTrying seed: 16
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: Trying seed: 15
+; finished in 30.61sok
+; finished in 30.58sTrying seed: 3
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+running 1 test
+Trying seed: 14
+; finished in 30.68s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok
+; finished in 30.60s
+test result: Trying seed: 12
+running 1 test
+running 1 test
+Trying seed: 11
+running 1 test
+test result: 
+okok
+running 1 test
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+test result: test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outokok; finished in 30.56s
+running 1 test
+; finished in 30.58s
+running 1 test
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+Trying seed: 9
+; finished in 30.58s; finished in 30.58s
+Trying seed: 8
+Trying seed: 7
+test result: okok
+running 1 test
+running 1 test
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outTrying seed: 6
+; finished in 30.65s
+Trying seed: 5
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 31.53s
+Trying seed: 4
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+running 1 test
+test result: ok
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outtest result: ok; finished in 30.62s
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.62s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.57s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.57s
+test result: 
+oktest result: ok
+test result: . 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.58s; finished in 30.58s
+. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
+; finished in 30.58s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.56s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.62s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok
+; finished in 30.59sok
+test result: 
+oktest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.58s
+; finished in 30.57s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.61s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered outok
+; finished in 30.59s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.60s
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 30.56s
+warning: 1 warning emitted
+MIRI_EXIT=0
+Sat Oct  3 16:26:12 +07 2026
