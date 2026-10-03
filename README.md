@@ -1,6 +1,6 @@
 # arc-swap-210-repro
 
-Status: T1 landed (standalone crate + hammer); T2–T4 results below as they land.
+Status: reproduces standalone on aarch64 (M3) with 1.9.1 and 1.9.2; 0 under the RwLock strategy; Miri clean; x86_64 in progress — see RESULTS.md.
 
 Standalone reproducer attempt for
 [vorner/arc-swap#210](https://github.com/vorner/arc-swap/issues/210): a `Guard`
