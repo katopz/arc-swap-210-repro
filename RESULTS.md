@@ -1,6 +1,6 @@
 # Results
 
-Status: T1–T4 complete on the M3; T3 (x86_64) in progress.
+Status: T1–T4 complete on the M3; T3 (x86_64) interim 0/450, continuing.
 
 All runs: `scripts/hammer.sh`, the two tests in one libtest binary,
 `--test-threads=2`, debug profile, **system allocator**, rustc 1.98.1.
@@ -58,11 +58,21 @@ the native runs.
 ## T3: x86_64 (Windows 11, MSVC, rustc 1.98.1)
 
 - Cargo-per-iteration mode costs 40–60 s per iteration there under load. It
-  was stopped at 50–74 iterations with 0 fires, which is uninformative
-  (≈ 0.7 fires expected at the M3 rate).
-- Direct mode (`-d`) under `./load` builds: in progress.
-- x86 is TSO (stronger ordering than aarch64), so a fire there is strong
-  evidence and a non-fire is weak.
+  was stopped at 50–74 iterations with 0 fires, which is uninformative.
+- Direct mode (`-d`) under `./load` builds: **interim 0 MYSTERY in 450
+  iterations** (1 MUNDANE starvation, classified separately). At the M3
+  rate (~1/100), P(0 | 450) ≈ 1.1%. The run is continuing to 1000.
+- x86 is TSO (stronger ordering than aarch64). A clean x86 run therefore
+  points toward a weak-ordering defect that shows on aarch64. It does not
+  separate "arc-swap ordering bug" from "Apple-silicon-specific"; a
+  non-Apple aarch64 machine would.
+
+## Downstream confirmation (the original codebase)
+
+Replacing the `ArcSwap<Inner>` in the original code with
+`std::sync::RwLock<Arc<Inner>>`, interleaved pair by pair with this repo's
+stock-1.9.1 binary under the same build load (2000 pairs, loadavg 29 → 76):
+**this repo 24 MYSTERY, the `RwLock<Arc<_>>` version 0.**
 
 ## Reproduce
 
