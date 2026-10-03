@@ -4,12 +4,14 @@
 # (backwards version / torn-or-foreign snapshot) separately from MUNDANE ones
 # (reader starvation) and from anything else.
 #
-# usage: scripts/hammer.sh [-n ITERS] [-l LOAD_DIR|none] [-f FEATURES] [-o OUT] [-s]
+# usage: scripts/hammer.sh [-n ITERS] [-l LOAD_DIR|none] [-f FEATURES] [-o OUT] [-s] [-d]
 #   -n  iterations (default 300)
 #   -l  cargo workspace to build as load (default ./load; "none" = no load)
 #   -f  cargo features for the test build (e.g. tracking_alloc)
 #   -o  output dir (default ./hammer-out)
 #   -s  stop at the first MYSTERY fire
+#   -d  run the built test binary directly each iteration instead of re-invoking
+#       cargo (much faster where cargo startup is slow, e.g. Windows under load)
 set -u
 
 ITERS=300
@@ -17,13 +19,15 @@ LOAD_DIR="$(cd "$(dirname "$0")/.." && pwd)/load"
 FEATURES=""
 OUT="$(pwd)/hammer-out"
 STOP_FIRST=0
-while getopts "n:l:f:o:s" opt; do
+DIRECT=0
+while getopts "n:l:f:o:sd" opt; do
   case "$opt" in
     n) ITERS="$OPTARG" ;;
     l) LOAD_DIR="$OPTARG" ;;
     f) FEATURES="$OPTARG" ;;
     o) OUT="$OPTARG" ;;
     s) STOP_FIRST=1 ;;
+    d) DIRECT=1 ;;
     *) echo "bad option" >&2; exit 2 ;;
   esac
 done
@@ -61,12 +65,18 @@ trap cleanup EXIT INT TERM
   echo "host: $(uname -srm)"
   echo "rustc: $(rustc -V)"
   echo "arc-swap: $(grep -A1 'name = "arc-swap"' "$ROOT/Cargo.lock" 2>/dev/null | sed -n 2p)"
-  echo "features: ${FEATURES:-<none>}  iters: $ITERS  load: $LOAD_DIR"
+  echo "features: ${FEATURES:-<none>}  iters: $ITERS  load: $LOAD_DIR  direct: $DIRECT"
 } | tee "$LOG"
 
 echo "warm-up build..." | tee -a "$LOG"
-if ! (cd "$ROOT" && cargo test --lib "${FEAT_ARGS[@]+"${FEAT_ARGS[@]}"}" --no-run -q >"$OUT/warmup.log" 2>&1); then
+if ! (cd "$ROOT" && cargo test --lib "${FEAT_ARGS[@]+"${FEAT_ARGS[@]}"}" --no-run \
+    --message-format=json >"$OUT/warmup.log" 2>&1); then
   echo "warm-up build FAILED (see $OUT/warmup.log)" | tee -a "$LOG"; exit 2
+fi
+BIN="$(grep -o '"executable":"[^"]*"' "$OUT/warmup.log" | tail -1 | sed 's/"executable":"//; s/"$//; s#\\\\#/#g')"
+if [ "$DIRECT" -eq 1 ]; then
+  [ -n "$BIN" ] && [ -e "$BIN" ] || { echo "test binary not found: '$BIN'" | tee -a "$LOG"; exit 2; }
+  echo "binary: $BIN" | tee -a "$LOG"
 fi
 
 rm -f "$OUT/stop"
@@ -79,7 +89,11 @@ fi
 mystery=0; mundane=0; other=0; done_iters=0
 for i in $(seq 1 "$ITERS"); do
   out="$OUT/iter.log"
-  (cd "$ROOT" && cargo test --lib "${FEAT_ARGS[@]+"${FEAT_ARGS[@]}"}" -q concurrent_lora -- --test-threads=2 >"$out" 2>&1)
+  if [ "$DIRECT" -eq 1 ]; then
+    (cd "$ROOT" && "$BIN" -q concurrent_lora --test-threads=2 >"$out" 2>&1)
+  else
+    (cd "$ROOT" && cargo test --lib "${FEAT_ARGS[@]+"${FEAT_ARGS[@]}"}" -q concurrent_lora -- --test-threads=2 >"$out" 2>&1)
+  fi
   rc=$?
   done_iters=$i
   if [ $rc -ne 0 ]; then
