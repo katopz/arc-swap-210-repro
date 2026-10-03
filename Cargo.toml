@@ -7,7 +7,7 @@ description = "Standalone reproducer attempt for vorner/arc-swap#210"
 
 [dependencies]
 # The version the original fires were observed on.
-arc-swap = "=1.9.1"
+arc-swap = "=1.9.2"
 
 [features]
 # Bisect knob: the original test binary ran under a thin `System` wrapper that
