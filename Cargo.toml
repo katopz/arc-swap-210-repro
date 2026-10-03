@@ -1,0 +1,19 @@
+[package]
+name = "arc-swap-210-repro"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Standalone reproducer attempt for vorner/arc-swap#210"
+
+[dependencies]
+# The version the original fires were observed on.
+arc-swap = "=1.9.1"
+
+[features]
+# Bisect knob: the original test binary ran under a thin `System` wrapper that
+# bumps a const-init thread-local counter in `alloc`. Off by default so the
+# reproducer uses the plain system allocator.
+tracking_alloc = []
+
+[workspace]
+exclude = ["load"]
