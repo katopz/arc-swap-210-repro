@@ -104,6 +104,10 @@ mod tests {
     /// Writer fills a == b == i.
     #[test]
     fn concurrent_lora_update_read() {
+        update_read_scenario();
+    }
+
+    fn update_read_scenario() {
         let slot = Arc::new(Slot::new(A_LEN, B_LEN));
         let total = UPDATE_READ_TOTAL;
         let start = Arc::new(Barrier::new(2));
@@ -155,6 +159,10 @@ mod tests {
     /// Writer fills a == i, b == 2*i — so `a == b` (the sibling's pattern) is impossible here.
     #[test]
     fn concurrent_lora_no_torn_read() {
+        no_torn_read_scenario();
+    }
+
+    fn no_torn_read_scenario() {
         let slot = Arc::new(Slot::new(A_LEN, B_LEN));
         let total = NO_TORN_TOTAL;
 
@@ -201,5 +209,17 @@ mod tests {
         writer.join().expect("writer panicked");
         let consistent = reader.join().expect("reader panicked");
         assert!(consistent > 0, "MUNDANE reader should have seen at least one consistent snapshot");
+    }
+
+    /// Miri only: libtest does not reliably run two tests concurrently under
+    /// Miri, so both scenarios (two independent instances, four threads) run
+    /// inside one test here.
+    #[cfg(miri)]
+    #[test]
+    fn miri_both_scenarios_concurrently() {
+        let t1 = thread::spawn(update_read_scenario);
+        let t2 = thread::spawn(no_torn_read_scenario);
+        t1.join().expect("update_read scenario panicked");
+        t2.join().expect("no_torn_read scenario panicked");
     }
 }
