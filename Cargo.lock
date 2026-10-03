@@ -4,9 +4,8 @@ version = 4
 
 [[package]]
 name = "arc-swap"
-version = "1.9.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a3a1fd6f75306b68087b831f025c712524bcb19aad54e557b1129cfa0a2b207"
+version = "1.9.2"
+source = "git+https://github.com/katopz/arc-swap?rev=4fc00b37fc523cba6bf1ea55b2196880a277ff94#4fc00b37fc523cba6bf1ea55b2196880a277ff94"
 dependencies = [
  "rustversion",
 ]

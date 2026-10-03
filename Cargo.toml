@@ -7,7 +7,7 @@ description = "Standalone reproducer attempt for vorner/arc-swap#210"
 
 [dependencies]
 # The version the original fires were observed on.
-arc-swap = "=1.9.1"
+arc-swap = { version = "1.9", features = ["genlock-load"] }
 
 [features]
 # Bisect knob: the original test binary ran under a thin `System` wrapper that
@@ -17,3 +17,7 @@ tracking_alloc = []
 
 [workspace]
 exclude = ["load"]
+
+# Control branch only: the PR #211 mitigation (DefaultStrategy -> RwLock<()>).
+[patch.crates-io]
+arc-swap = { git = "https://github.com/katopz/arc-swap", rev = "4fc00b37fc523cba6bf1ea55b2196880a277ff94" }
