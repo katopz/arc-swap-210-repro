@@ -18,3 +18,5 @@ clap = { version = "4", features = ["derive"] }
 image = "0.25"
 chrono = "0.4"
 hyper = { version = "1", features = ["full"] }
+
+[workspace]
