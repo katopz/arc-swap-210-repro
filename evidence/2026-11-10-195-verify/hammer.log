@@ -1,0 +1,181 @@
+== arc-swap #210 1.9.5 verification 2026-11-10T05:32:42Z
+host: Darwin 27.2.0 arm64  rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arm-a: version = "1.9.2"  bin: /Volumes/SDXC1TB/tmp/arc210/target-a/debug/deps/arc_swap_210_repro-5245fdb985befad2
+arm-b: version = "1.9.5"  bin: /Volumes/SDXC1TB/tmp/arc210/target-b/debug/deps/arc_swap_210_repro-53054538157ca19e
+pairs: 500 (resume from 1)  load: fresh-target check + test --no-run of ./load on SDXC
+box at launch: load=4.29 sd_free=122G root_free=55G power=Now drawing from 'AC Power'
+load loops started (pids 84986 84988)
+pair 25: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.35)
+pair 50: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.64)
+pair 75: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.57)
+pair 92 arm a: MYSTERY (load 13.30)
+    thread '<unnamed>' (36672457) panicked at src/lib.rs:188:17:
+    MYSTERY version went backwards: 2361 -> 580 (inner=0x7760834060, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (36672454) panicked at src/lib.rs:210:40:
+    reader panicked: Any { .. }
+pair 100: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 15.57)
+pair 125: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 31.34)
+pair 150: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 35.72)
+pair 175: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 29.64)
+pair 200: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 26.31)
+pair 225: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.83)
+pair 250: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 6.79)
+pair 275: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 11.46)
+pair 300: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 10.22)
+pair 325: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.21)
+pair 350: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.30)
+pair 375: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 12.73)
+pair 400: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 22.45)
+pair 425: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 42.44)
+pair 450: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 41.23)
+pair 475: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 39.93)
+pair 500: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 32.48)
+== DONE pairs_done_a=500 pairs_done_b=500 armA: mystery=1 mundane=0 other=0 | armB: mystery=0 mundane=0 other=0
+== CLEANUP 2026-11-10T05:51:19Z
+== arc-swap #210 1.9.5 verification 2026-11-10T05:52:30Z
+host: Darwin 27.2.0 arm64  rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arm-a: version = "1.9.2"  bin: /Volumes/SDXC1TB/tmp/arc210/target-a/debug/deps/arc_swap_210_repro-5245fdb985befad2
+arm-b: version = "1.9.5"  bin: /Volumes/SDXC1TB/tmp/arc210/target-b/debug/deps/arc_swap_210_repro-53054538157ca19e
+pairs: 500 (resume from 501)  load: fresh-target check + test --no-run of ./load on SDXC
+box at launch: load=19.08 sd_free=119G root_free=43G power=Now drawing from 'AC Power'
+load loops started (pids 14932 14934)
+== DONE pairs_done_a=500 pairs_done_b=500 armA: mystery=0 mundane=0 other=0 | armB: mystery=0 mundane=0 other=0
+== CLEANUP 2026-11-10T05:52:33Z
+== arc-swap #210 1.9.5 verification 2026-11-10T05:53:04Z
+host: Darwin 27.2.0 arm64  rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arm-a: version = "1.9.2"  bin: /Volumes/SDXC1TB/tmp/arc210/target-a/debug/deps/arc_swap_210_repro-5245fdb985befad2
+arm-b: version = "1.9.5"  bin: /Volumes/SDXC1TB/tmp/arc210/target-b/debug/deps/arc_swap_210_repro-53054538157ca19e
+pairs: 1500 (resume from 501)  load: fresh-target check + test --no-run of ./load on SDXC
+box at launch: load=17.78 sd_free=120G root_free=43G power=Now drawing from 'AC Power'
+load loops started (pids 17708 17709)
+pair 525: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 15.99)
+pair 550: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 16.06)
+pair 575: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.06)
+pair 600: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.41)
+pair 625: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.14)
+pair 650: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 6.87)
+pair 675: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 13.19)
+pair 700: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 10.07)
+pair 720 arm a: MYSTERY (load 5.17)
+    thread '<unnamed>' (36850013) panicked at src/lib.rs:144:21:
+    MYSTERY torn/foreign read at v=123: a=123 b=246 (inner=0x7b3b004060, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_update_read' (36850009) panicked at src/lib.rs:155:34:
+    reader panicked: Any { .. }
+pair 725: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 6.29)
+pair 750: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 10.77)
+pair 775: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.56)
+pair 800: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.16)
+pair 825: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 6.53)
+pair 850: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.96)
+pair 875: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.50)
+pair 900: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.34)
+pair 925: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 11.72)
+pair 950: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 12.92)
+pair 975: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 10.17)
+pair 1000: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.75)
+pair 1025: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.68)
+pair 1050: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 10.16)
+pair 1075: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 6.88)
+pair 1100: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.87)
+pair 1125: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.65)
+pair 1150: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.81)
+pair 1161 arm a: MYSTERY (load 3.04)
+    thread '<unnamed>' (37037755) panicked at src/lib.rs:135:17:
+    MYSTERY version went backwards: 189 -> 97 (inner=0x7bbec3c060, tid=ThreadId(7))
+    thread 'tests::concurrent_lora_update_read' (37037751) panicked at src/lib.rs:155:34:
+    reader panicked: Any { .. }
+pair 1175: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.01)
+pair 1200: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.02)
+pair 1225: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.41)
+pair 1250: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.57)
+pair 1275: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.60)
+pair 1300: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.40)
+pair 1325: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.27)
+pair 1350: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.65)
+pair 1375: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.59)
+pair 1400: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.36)
+pair 1425: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.40)
+pair 1450: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.72)
+pair 1475: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.88)
+pair 1500: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.04)
+== DONE pairs_done_a=1500 pairs_done_b=1500 armA: mystery=2 mundane=0 other=0 | armB: mystery=0 mundane=0 other=0
+== CLEANUP 2026-11-10T06:16:49Z
+== arc-swap #210 1.9.5 verification 2026-11-10T06:21:35Z
+host: Darwin 27.2.0 arm64  rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arm-a: version = "1.9.2"  bin: /Volumes/SDXC1TB/tmp/arc210/target-a/debug/deps/arc_swap_210_repro-5245fdb985befad2
+arm-b: version = "1.9.5"  bin: /Volumes/SDXC1TB/tmp/arc210/target-b/debug/deps/arc_swap_210_repro-53054538157ca19e
+pairs: 3000 (resume from 1501)  load: fresh-target check + test --no-run of ./load on SDXC
+box at launch: load=3.41 sd_free=118G root_free=134G power=Now drawing from 'AC Power'
+load loops started (pids 36947 36949)
+pair 1525: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.98)
+pair 1550: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.54)
+pair 1575: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.79)
+pair 1600: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.12)
+pair 1625: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.69)
+pair 1650: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.90)
+pair 1675: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.21)
+pair 1700: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.23)
+pair 1725: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.29)
+pair 1729 arm a: MYSTERY (load 2.73)
+    thread '<unnamed>' (37109289) panicked at src/lib.rs:198:17:
+    MYSTERY torn/foreign read at v=474: a=474 (expected 474), b=474 (expected 948) (inner=0x79210081a0, tid=ThreadId(6))
+    thread 'tests::concurrent_lora_no_torn_read' (37109285) panicked at src/lib.rs:210:40:
+    reader panicked: Any { .. }
+pair 1750: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.25)
+pair 1775: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.84)
+pair 1800: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.54)
+pair 1825: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.10)
+pair 1850: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.17)
+pair 1875: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.00)
+pair 1900: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.08)
+pair 1925: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.21)
+pair 1950: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.13)
+pair 1975: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.32)
+pair 2000: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.89)
+pair 2025: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.10)
+pair 2050: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.14)
+pair 2075: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.40)
+pair 2100: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.57)
+pair 2125: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.50)
+pair 2150: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.19)
+pair 2175: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.99)
+pair 2200: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.91)
+pair 2225: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.96)
+pair 2250: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.02)
+pair 2275: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.03)
+pair 2300: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.34)
+pair 2325: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.09)
+pair 2350: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.08)
+pair 2354 arm a: MYSTERY (load 2.83)
+    thread '<unnamed>' (37164202) panicked at src/lib.rs:198:17:
+    MYSTERY torn/foreign read at v=123: a=123 (expected 123), b=123 (expected 246) (inner=0x7836814100, tid=ThreadId(6))
+    thread 'tests::concurrent_lora_no_torn_read' (37164198) panicked at src/lib.rs:210:40:
+    reader panicked: Any { .. }
+pair 2375: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.93)
+pair 2400: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.61)
+pair 2425: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.39)
+pair 2450: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.42)
+pair 2475: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.48)
+pair 2500: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.32)
+pair 2525: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.19)
+pair 2550: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.86)
+pair 2575: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.31)
+pair 2600: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.68)
+pair 2625: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.05)
+pair 2650: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.74)
+pair 2675: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.32)
+pair 2700: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.88)
+pair 2725: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 2.75)
+pair 2750: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.14)
+pair 2775: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 18.31)
+pair 2800: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 26.80)
+pair 2825: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 23.80)
+pair 2850: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 16.44)
+pair 2875: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 13.47)
+pair 2900: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 3.40)
+pair 2925: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.90)
+pair 2950: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.92)
+pair 2975: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.68)
+pair 3000: A mystery=2 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 11.51)
+== DONE pairs_done_a=3000 pairs_done_b=3000 armA: mystery=2 mundane=0 other=0 | armB: mystery=0 mundane=0 other=0
+== CLEANUP 2026-11-10T07:07:12Z

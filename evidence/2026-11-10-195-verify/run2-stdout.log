@@ -1,0 +1,12 @@
+== arc-swap #210 1.9.5 verification 2026-11-10T05:52:30Z
+host: Darwin 27.2.0 arm64  rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arm-a: version = "1.9.2"  bin: /Volumes/SDXC1TB/tmp/arc210/target-a/debug/deps/arc_swap_210_repro-5245fdb985befad2
+arm-b: version = "1.9.5"  bin: /Volumes/SDXC1TB/tmp/arc210/target-b/debug/deps/arc_swap_210_repro-53054538157ca19e
+pairs: 500 (resume from 501)  load: fresh-target check + test --no-run of ./load on SDXC
+box at launch: load=19.08 sd_free=119G root_free=43G power=Now drawing from 'AC Power'
+load loops started (pids 14932 14934)
+== DONE pairs_done_a=500 pairs_done_b=500 armA: mystery=0 mundane=0 other=0 | armB: mystery=0 mundane=0 other=0
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug/.fingerprint: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug/build: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check: Directory not empty

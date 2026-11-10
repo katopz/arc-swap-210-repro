@@ -90,3 +90,38 @@ MIRIFLAGS="-Zmiri-many-seeds=0..64" cargo +nightly miri test --lib miri_both   #
 ## Evidence
 
 Raw hammer logs and per-fire logs for every M3 run, plus the Miri output, are in [`evidence/`](evidence/).
+
+## 2026-11-10: 1.9.5 verification
+
+Upstream released 1.9.5 (fix `64d1b8c` + regression test `28deab0`) for exactly
+this shape — debts paid across instances after address reuse. A/B on the M3,
+strictly interleaved ABAB, **3000 pairs per arm**, the same build-load recipe as
+above (rustc 1.98.1, macOS 27.2, AC power, loadavg 2.5–42 across the run,
+per-row ledger). 1.9.2 as the control because it's the stock pre-fix release
+the October rates were measured on, so the two windows compare.
+
+| arc-swap | MYSTERY fires |
+|---|---|
+| 1.9.2 (control) | **5 / 3000** |
+| 1.9.5 | **0 / 3000** |
+
+MUNDANE (reader starvation): 0 in both arms.
+
+Three of the five control fires are provably foreign complete snapshots, in
+both directions: `update_read` (fill `a == b`) once observed `a=123 b=246` —
+the sibling's fill (`b == 2a`) — and `no_torn_read` (fill `b == 2a`) once
+observed `a=123 b=123`, which is `update_read`'s fill. The other two were
+version-backwards into the sibling's range. That is the cross-instance
+signature `64d1b8c` removes.
+
+One-sided Fisher on 5/3000 vs 0/3000: p = 0.031. At the Clopper-Pearson 95%
+lower bound of the control rate, a 0/3000 arm would happen by chance about
+44% of the time, so this window alone doesn't carry the claim; combined with
+October's rates (1/30 in-repo, 1/77 here under build load; the lock-based
+control 0/1000) and the fix landing on the hypothesized mechanism, it reads
+as: same bug, fixed.
+
+Logs (per-row CSV, hammer log, per-fire logs, the Fisher script):
+[`evidence/2026-11-10-195-verify/`](evidence/2026-11-10-195-verify/). The A/B
+driver itself sits in the private bench record; the repo's own
+`scripts/hammer.sh` reproduces the shape.

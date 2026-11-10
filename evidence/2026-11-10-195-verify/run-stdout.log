@@ -1,0 +1,44 @@
+== arc-swap #210 1.9.5 verification 2026-11-10T05:32:42Z
+host: Darwin 27.2.0 arm64  rustc: rustc 1.98.1 (48a229cea 2026-09-01)
+arm-a: version = "1.9.2"  bin: /Volumes/SDXC1TB/tmp/arc210/target-a/debug/deps/arc_swap_210_repro-5245fdb985befad2
+arm-b: version = "1.9.5"  bin: /Volumes/SDXC1TB/tmp/arc210/target-b/debug/deps/arc_swap_210_repro-53054538157ca19e
+pairs: 500 (resume from 1)  load: fresh-target check + test --no-run of ./load on SDXC
+box at launch: load=4.29 sd_free=122G root_free=55G power=Now drawing from 'AC Power'
+load loops started (pids 84986 84988)
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug/.fingerprint: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-testno/debug/.fingerprint: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug/build: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-testno/debug/build: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-testno/debug: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-testno: Directory not empty
+pair 25: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.35)
+pair 50: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 4.64)
+pair 75: A mystery=0 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.57)
+pair 92 arm a: MYSTERY (load 13.30)
+    thread '<unnamed>' (36672457) panicked at src/lib.rs:188:17:
+    MYSTERY version went backwards: 2361 -> 580 (inner=0x7760834060, tid=ThreadId(5))
+    thread 'tests::concurrent_lora_no_torn_read' (36672454) panicked at src/lib.rs:210:40:
+    reader panicked: Any { .. }
+pair 100: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 15.57)
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug/deps: Directory not empty
+pair 125: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 31.34)
+pair 150: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 35.72)
+pair 175: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 29.64)
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check/debug: Directory not empty
+rm: /Volumes/SDXC1TB/tmp/arc210/load-target-check: Directory not empty
+pair 200: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 26.31)
+pair 225: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 8.83)
+pair 250: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 6.79)
+pair 275: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 11.46)
+pair 300: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 10.22)
+pair 325: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 7.21)
+pair 350: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 5.30)
+pair 375: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 12.73)
+pair 400: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 22.45)
+pair 425: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 42.44)
+pair 450: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 41.23)
+pair 475: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 39.93)
+pair 500: A mystery=1 mundane=0 other=0 | B mystery=0 mundane=0 other=0 (load 32.48)
+== DONE pairs_done_a=500 pairs_done_b=500 armA: mystery=1 mundane=0 other=0 | armB: mystery=0 mundane=0 other=0
